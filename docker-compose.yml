@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-tarefa
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Fiap@2026
+      MYSQL_DATABASE: tarefa_db
+      MYSQL_USER: rm560907
+      MYSQL_PASSWORD: Fiap@2026
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-tarefa-volume:/var/lib/mysql
+    networks:
+      - tarefa-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: api-tarefa:v1
+    container_name: api-tarefa
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/tarefa_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: rm560907
+      SPRING_DATASOURCE_PASSWORD: Fiap@2026
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    networks:
+      - tarefa-network
+
+volumes:
+  mysql-tarefa-volume:
+
+networks:
+  tarefa-network:
+    driver: bridge
