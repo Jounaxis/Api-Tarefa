@@ -1,46 +1,311 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #09111f;
+    --bg-secondary: #0d1728;
+    --panel: #101b2d;
+    --panel-2: #14233a;
+    --border: #223550;
+
+    --text: #f3f7fc;
+    --muted: #9fb0c9;
+
+    --primary: #3da5ff;
+    --primary-dark: #1f7fd1;
+    --primary-soft: rgba(61, 165, 255, 0.12);
+
+    --accent: #ff9f43;
+    --accent-dark: #e88728;
+    --accent-soft: rgba(255, 159, 67, 0.14);
+
+    --danger: #ff5d73;
+    --success: #2ecc71;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(180deg, var(--bg) 0%, #050b15 100%);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 24px;
+}
+
+.topbar {
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+    padding: 18px 24px;
+    border: 1px solid var(--border);
+    background-color: rgba(16, 27, 45, 0.95);
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand h1 {
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--text);
+}
+
+.brand-dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 14px rgba(61, 165, 255, 0.8);
+}
+
+.api-badge {
+    font-size: 13px;
+    color: var(--muted);
+    background-color: #0a1322;
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    border-radius: 999px;
 }
 
 .container {
-    width: 600px;
-    margin: 40px auto;
-    background-color: white;
-    padding: 25px;
-    border-radius: 8px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-h1, h2 {
-    text-align: center;
+.hero {
+    margin-bottom: 28px;
 }
 
-.formulario {
+.hero h2 {
+    font-size: 42px;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.hero h2 span {
+    color: var(--primary);
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.card {
+    background-color: rgba(16, 27, 45, 0.98);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22);
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--text);
+}
+
+.task-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 16px;
+    align-items: end;
+}
+
+.form-group {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
-input {
-    padding: 10px;
-    font-size: 16px;
+.form-group label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-button {
-    padding: 10px;
-    font-size: 16px;
+.form-group input {
+    background-color: #091321;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 14px;
+    border-radius: 12px;
+    outline: none;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.filter-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(61, 165, 255, 0.18);
+}
+
+.form-actions {
+    display: flex;
+    align-items: end;
+}
+
+.btn {
+    border: none;
+    border-radius: 12px;
+    padding: 13px 18px;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.2s ease;
 }
 
-.tarefa {
-    background-color: #e9e9e9;
-    margin-top: 10px;
-    padding: 15px;
-    border-radius: 6px;
+.btn-primary {
+    background-color: var(--accent);
+    color: #111;
 }
 
-.tarefa button {
-    margin-right: 5px;
+.btn-primary:hover {
+    background-color: var(--accent-dark);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.section-header p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.filter-input {
+    background-color: #091321;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 14px;
+    border-radius: 12px;
+    outline: none;
+    min-width: 260px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #0b1423;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 16px 14px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+}
+
+th {
+    color: var(--muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.status {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-pendente {
+    background-color: var(--primary-soft);
+    color: var(--primary);
+    border: 1px solid rgba(61, 165, 255, 0.25);
+}
+
+.status-concluida {
+    background-color: rgba(46, 204, 113, 0.12);
+    color: var(--success);
+    border: 1px solid rgba(46, 204, 113, 0.25);
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    border: 1px solid var(--border);
+    background-color: #0b1423;
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.2s ease;
+}
+
+.action-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.action-btn.delete:hover {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--muted);
+    padding: 24px;
+}
+
+@media (max-width: 900px) {
+    .task-form {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-input {
+        min-width: 100%;
+    }
+
+    .hero h2 {
+        font-size: 32px;
+    }
 }

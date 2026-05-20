@@ -1,24 +1,80 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>API de Tarefas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Gestão de Tarefas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="page">
+    <header class="topbar">
+        <div class="brand">
+            <span class="brand-dot"></span>
+            <h1>TASKFLOW</h1>
+        </div>
+        <div class="api-badge">localhost:8080/tarefas</div>
+    </header>
 
-<div class="container">
-    <h1>API de Tarefas</h1>
+    <main class="container">
+        <section class="hero">
+            <h2>Gestão de <span>Tarefas</span></h2>
+            <p>Uma interface simples para cadastrar, visualizar e gerenciar tarefas da API.</p>
+        </section>
 
-    <div class="formulario">
-        <input type="text" id="titulo" placeholder="Título da tarefa">
-        <input type="text" id="descricao" placeholder="Descrição da tarefa">
-        <button onclick="cadastrarTarefa()">Cadastrar</button>
-    </div>
+        <section class="card">
+            <h3>Nova Tarefa</h3>
 
-    <h2>Lista de tarefas</h2>
+            <form id="tarefaForm" class="task-form">
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" id="titulo" placeholder="Ex: Estudar Docker" required>
+                </div>
 
-    <div id="lista-tarefas"></div>
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <input type="text" id="descricao" placeholder="Ex: Revisar Dockerfile e Compose" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">+ Adicionar</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="card">
+            <div class="section-header">
+                <div>
+                    <h3>Lista de Tarefas</h3>
+                    <p id="contadorTarefas">0 tarefas cadastradas</p>
+                </div>
+
+                <input
+                        type="text"
+                        id="filtro"
+                        class="filter-input"
+                        placeholder="Filtrar por título..."
+                >
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Descrição</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody id="listaTarefas">
+                    <!-- preenchido via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 </div>
 
 <script src="app.js"></script>
