@@ -8,7 +8,7 @@ A aplicação consiste em uma API REST para gerenciamento de tarefas, acompanhad
 
 ## Infraestrutura:
 
-![](docs/Captura de Tela 2026-05-21 às 12.56.49.png)
+![Arquitetura da Aplicação](docs/arquitetura.png)
 
 ---
 
